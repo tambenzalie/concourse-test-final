@@ -1,0 +1,25 @@
+resources:
+- name: my-repo
+  type: git
+  source:
+    uri: ((github_repo_uri))
+    branch: ((github_branch))
+    username: ((github_username))
+    password: ((github_token)) # Concourse uses 'password' field for the token
+
+jobs:
+- name: test-on-push
+  plan:
+  - get: my-repo
+    trigger: true
+  - task: list-files
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: alpine }
+      inputs:
+      - name: my-repo
+      run:
+        path: ls
+        args: ["-R", "my-repo"]
