@@ -1,0 +1,12 @@
+# Concourse credentials
+credentials.yml
+
+# SSH keys (if you generated any)
+concourse-deploy-key
+concourse-deploy-key.pub
+
+# macOS system files
+.DS_Store
+
+#notes
+Notes.txt
