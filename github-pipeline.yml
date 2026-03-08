@@ -12,7 +12,7 @@ jobs:
   plan:
   - get: my-repo
     trigger: true
-  - task: list-files
+  - task: run-test-script
     config:
       platform: linux
       image_resource:
@@ -21,5 +21,5 @@ jobs:
       inputs:
       - name: my-repo
       run:
-        path: ls
-        args: ["-R", "my-repo"]
+        path: sh
+        args: ["my-repo/ci/test.sh"] # Path is relative to the input 'my-repo'
